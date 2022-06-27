@@ -1,6 +1,5 @@
 package io.github.mat3e.hello;
 
-import io.github.mat3e.hello.HelloService;
 import io.github.mat3e.lang.Lang;
 import io.github.mat3e.lang.LangRepository;
 import org.junit.jupiter.api.Test;
@@ -22,7 +21,7 @@ class HelloServiceTest {
 		String name = null;
 		String expectedResult = WELCOME + " " + HelloService.FALLBACK_NAME + "!";
 		//when
-		String result = SUT.prepareGreeting(null,"-1");
+		String result = SUT.prepareGreeting(null,-1);
 		//then
 		assertThat(result).isEqualTo(expectedResult);
 	}
@@ -35,7 +34,7 @@ class HelloServiceTest {
 		String name = "Piotr";
 		String expectedResult = "Hello " + name + "!";
 		//when
-		String result = SUT.prepareGreeting(name,"-1");
+		String result = SUT.prepareGreeting(name,-1);
 		//then
 		assertThat(result).isEqualTo(expectedResult);
 	}
@@ -51,16 +50,16 @@ class HelloServiceTest {
 		assertThat(result).isEqualTo(FALLBACK_ID_WELCOME+" "+HelloService.FALLBACK_NAME+"!");
 	}
 
-	@Test
-	void namePrepareTextLangGreetingReturnsGreetingWithFallbackIdLang () {
-		//given
-		var mockRepository = fallBackLangIdRepository();
-		var SUT = new HelloService(mockRepository);
-		//when
-		var result = SUT.prepareGreeting(null,"abc");
-		//then
-		assertThat(result).isEqualTo(FALLBACK_ID_WELCOME+" "+HelloService.FALLBACK_NAME+"!");
-	}
+//	@Test
+//	void namePrepareTextLangGreetingReturnsGreetingWithFallbackIdLang () {
+//		//given
+//		var mockRepository = fallBackLangIdRepository();
+//		var SUT = new HelloService(mockRepository);
+//		//when
+//		var result = SUT.prepareGreeting(null,"abc");
+//		//then
+//		assertThat(result).isEqualTo(FALLBACK_ID_WELCOME+" "+HelloService.FALLBACK_NAME+"!");
+//	}
 
 	@Test
 	void test_prepareGreeting_nonExistingLang_returnsGreetingWithFallbackLang(){
@@ -73,7 +72,7 @@ class HelloServiceTest {
 		};
 		var SUT = new HelloService(mockRepository);
 		//when
-		var result = SUT.prepareGreeting(null,"-1");
+		var result = SUT.prepareGreeting(null,-1);
 		//then
 		assertThat(result).isEqualTo(HelloService.FALLBACK_LANG.getWelcomeMsg()+" "+HelloService.FALLBACK_NAME+"!");
 	}
