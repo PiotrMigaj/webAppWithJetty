@@ -1,1 +1,0 @@
-insert into users(name,lastname,is_adult) values("Piotr","Migaj",1);
